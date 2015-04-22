@@ -1,0 +1,2 @@
+# speeddial
+Web Speeddial Launcher
