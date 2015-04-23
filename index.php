@@ -1,7 +1,31 @@
 <?php
 $startTime = microtime(true);
-//$saltSize = mcrypt_get_iv_size(MCRYPT_CAST_256, MCRYPT_MODE_CFB);
-//$salted = mcrypt_create_iv($saltSize, MCRYPT_DEV_RANDOM);
+/*
+$plainPasswd = 'ThisIsMyPassword';
+$cryptOptions = Array('cost' => 12);
+echo '<pre>'."\n".'Original Hash: ';
+$hashedPasswd = password_hash($plainPasswd, PASSWORD_BCRYPT, $cryptOptions);
+echo $hashedPasswd;
+echo "\n";
+echo '     Verified: ';
+echo password_verify($plainPasswd.'derp', $hashedPasswd);
+echo '</pre>';
+*/
+
+require_once('./config.php');
+require_once(SD_LIBDIR.'lib.db.php');
+require_once(SD_LIBDIR.'lib.user.php');
+require_once(SD_LIBDIR.'lib.passwd.php');
+
+$user = new User();
+$user->authenticateUser('ngz', $tempPassword);
+
+var_dump($user);
+
+
+
+
+//var_dump($user);
 
 ?>
 <!DOCTYPE html>
