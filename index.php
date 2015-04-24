@@ -20,12 +20,11 @@ require_once(SD_LIBDIR.'lib.passwd.php');
 $user = new User();
 $user->authenticateUser('ngz', $tempPassword);
 
-var_dump($user);
 
 
 
 
-//var_dump($user);
+
 
 ?>
 <!DOCTYPE html>
@@ -49,6 +48,7 @@ var_dump($user);
 </header>
 
 <?php $endTime = microtime(true); ?>
+<div class="debugdata"><?php var_dump($user); ?></div>
 <div class="benchmark">
 	<div>Execution Time: &nbsp; <?php echo (round(($endTime - $startTime) * 1000, 4)); ?>ms</div>
 </div>

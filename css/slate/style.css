@@ -24,12 +24,20 @@ body {
 
 
 
-
+.debugdata {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 33%;
+    float: left;
+    overflow: auto;
+}
 
 .benchmark {
 	position: absolute;
-	bottom: 0px;
-	right: 0px;
+	bottom: 0;
+	right: 0;
 	width: 50%;
 	height: 1.5em;
 	line-height: 1em;
