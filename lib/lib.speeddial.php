@@ -9,8 +9,12 @@ class Categories {
     public $user;
     public $categories;
 
+    function __construct ($user) {
+        $this->user = $user;
+    }
 
     public function getCategoryList ($userId) {
+
 
 
 

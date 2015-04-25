@@ -12,6 +12,7 @@ $user->authenticateUser('ngz', $tempPassword);
 
 if ($user->authenticated) {
     //  Display default group with user's selected template...
+    $categories = new Categories($user);
 }
 
 
