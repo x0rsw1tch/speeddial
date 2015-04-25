@@ -6,10 +6,11 @@ ini_set('display_startup_errors', TRUE);
 
 class Categories {
 
+    public $user;
     public $categories;
 
 
-    public function getCategories ($userId) {
+    public function getCategoryList ($userId) {
 
 
 
@@ -35,11 +36,6 @@ class Dials {
 
 
 
-class User {
-
-
-
-}
 
 
 ?>
