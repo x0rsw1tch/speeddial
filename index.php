@@ -1,16 +1,6 @@
 <?php
 $startTime = microtime(true);
-/*
-$plainPasswd = 'ThisIsMyPassword';
-$cryptOptions = Array('cost' => 12);
-echo '<pre>'."\n".'Original Hash: ';
-$hashedPasswd = password_hash($plainPasswd, PASSWORD_BCRYPT, $cryptOptions);
-echo $hashedPasswd;
-echo "\n";
-echo '     Verified: ';
-echo password_verify($plainPasswd.'derp', $hashedPasswd);
-echo '</pre>';
-*/
+
 
 require_once('./config.php');
 require_once(SD_LIBDIR.'lib.db.php');
@@ -20,8 +10,9 @@ require_once(SD_LIBDIR.'lib.passwd.php');
 $user = new User();
 $user->authenticateUser('ngz', $tempPassword);
 
-
-
+if ($user->authenticated) {
+    //  Display default group with user's selected template...
+}
 
 
 
@@ -48,7 +39,7 @@ $user->authenticateUser('ngz', $tempPassword);
 </header>
 
 <?php $endTime = microtime(true); ?>
-<div class="debugdata"><?php var_dump($user); ?></div>
+<div class="debugdata">Debug Data</div>
 <div class="benchmark">
 	<div>Execution Time: &nbsp; <?php echo (round(($endTime - $startTime) * 1000, 4)); ?>ms</div>
 </div>
