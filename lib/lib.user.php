@@ -5,6 +5,7 @@ class User {
     public $db;
     public $userInfo;
     public $authenticated;
+    public $userId;
 
 
 
@@ -42,6 +43,8 @@ class User {
             );
             $r = $this->db->execQuery($this->db, $sql, $params);
             $this->userInfo = $r->fetch();
+            $this->userId = $this->userInfo['uid'];
+            $this->userState = $this->userInfo['status'];
             return true;
         } else {
             return false;
@@ -50,18 +53,17 @@ class User {
 
 
     public function isUserValid ($user) {
-        $sql = 'SELECT user FROM spd_users WHERE user = :user LIMIT 0,1';
+        $sql = 'SELECT user,status FROM spd_users WHERE user = :user LIMIT 0,1';
         $params = Array(
             Array('param' => ':user', 'value' => $user, 'type' => PDO::PARAM_STR),
         );
         $r = $this->db->execQuery($this->db, $sql, $params);
-        if ($r->rowCount() < 1) {
+        $userState = $r->fetch();
+        if ($r->rowCount() < 1 && $userState['status'] === 0) {
             return false;
         } else {
             return true;
         }
-
-
     }
 
 
