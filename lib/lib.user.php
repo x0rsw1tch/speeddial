@@ -6,6 +6,7 @@ class User {
     public $userInfo;
     public $authenticated;
     public $userId;
+    public $userState;
 
 
 
@@ -43,8 +44,8 @@ class User {
             );
             $r = $this->db->execQuery($this->db, $sql, $params);
             $this->userInfo = $r->fetch();
-            $this->userId = $this->userInfo['uid'];
-            $this->userState = $this->userInfo['status'];
+            $this->userId = (int) $this->userInfo['uid'];
+            $this->userState = (int) $this->userInfo['status'];
             return true;
         } else {
             return false;
