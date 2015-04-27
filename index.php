@@ -8,14 +8,25 @@ require_once(SD_LIBDIR.'lib.user.php');
 require_once(SD_LIBDIR.'lib.passwd.php');
 require_once(SD_LIBDIR.'lib.categories.php');
 require_once(SD_LIBDIR.'lib.dials.php');
+require_once(SD_LIBDIR.'lib.htmlformatter.php');
 
 $user = new User();
 $user->authenticateUser('ngz', $tempPassword);
 
 if ($user->authenticated) {
-    //  Display default group with user's selected template...
+
     $categories = new Categories($user);
     $categories->getCategoryList();
+
+    $dials = new Dials($categories);
+    $dials->getDials();
+
+    $htmlOut = new HtmlFormatter($dials);
+
+    $categoryList = $htmlOut->generateCategoryHeaders();
+    $dialList = $htmlOut->generateDials();
+    $paneList = $htmlOut->generateTabPanes();
+
 }
 
 
@@ -38,17 +49,30 @@ if ($user->authenticated) {
 
 <body>
 <header>
-	<h1 class="catTitle">Main</h1>
-
+	<nav>
+        <!-- PUT CATEGORY TABS HERE -->
+        <?php echo $categoryList; ?>
+    </nav>
+    <div class="headerLogo">
+        <!-- PUT LOGO BRANDING HERE -->
+        <span>SPEEDDIAL</span>
+    </div>
 </header>
+
+<div class="paneContainer">
+    <!-- PUT DIAL PANES HERE -->
+
+</div>
 
 <?php $endTime = microtime(true); ?>
 <div class="debugdata">
     <div>Debug Data</div>
-    <div>R</div>
-    <?php var_dump($categories->categories); ?>
-    <div>--R</div>
+    <div>*** DIALS OBJECT ***</div>
+    <?php var_dump($dials); ?>
+    <div>*** <b>END</b> DIALS OBJECT ***</div>
+    <div>*** CATEGORIES OBJECT ***</div>
     <?php var_dump($categories); ?>
+    <div>*** <b>END</b> CATEGORIES OBJECT ***</div>
 </div>
 <div class="benchmark">
 	<div>Execution Time: &nbsp; <?php echo (round(($endTime - $startTime) * 1000, 4)); ?>ms</div>
