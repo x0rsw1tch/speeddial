@@ -17,7 +17,13 @@ body {
 	text-align: center;
 }
 
+nav {
+    float: left;
+}
 
+.headerLogo {
+    float: right;
+}
 
 
 
@@ -29,7 +35,7 @@ body {
     bottom: 0;
     left: 0;
     width: 50%;
-    height: 33%;
+    height: 50%;
     float: left;
     overflow: auto;
 }
