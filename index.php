@@ -6,6 +6,8 @@ require_once('./config.php');
 require_once(SD_LIBDIR.'lib.db.php');
 require_once(SD_LIBDIR.'lib.user.php');
 require_once(SD_LIBDIR.'lib.passwd.php');
+require_once(SD_LIBDIR.'lib.categories.php');
+require_once(SD_LIBDIR.'lib.dials.php');
 
 $user = new User();
 $user->authenticateUser('ngz', $tempPassword);
@@ -13,6 +15,7 @@ $user->authenticateUser('ngz', $tempPassword);
 if ($user->authenticated) {
     //  Display default group with user's selected template...
     $categories = new Categories($user);
+    $categories->getCategoryList();
 }
 
 
@@ -40,7 +43,13 @@ if ($user->authenticated) {
 </header>
 
 <?php $endTime = microtime(true); ?>
-<div class="debugdata">Debug Data</div>
+<div class="debugdata">
+    <div>Debug Data</div>
+    <div>R</div>
+    <?php var_dump($categories->categories); ?>
+    <div>--R</div>
+    <?php var_dump($categories); ?>
+</div>
 <div class="benchmark">
 	<div>Execution Time: &nbsp; <?php echo (round(($endTime - $startTime) * 1000, 4)); ?>ms</div>
 </div>
